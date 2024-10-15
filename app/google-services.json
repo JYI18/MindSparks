@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1022948137518",
+    "project_id": "mindsparks-b5274",
+    "storage_bucket": "mindsparks-b5274.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1022948137518:android:6bbf03160828f70ced5dbf",
+        "android_client_info": {
+          "package_name": "com.example.quizkids"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcRqHwH5Et28rtDkk6GGxDIKX1QT3oXlg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

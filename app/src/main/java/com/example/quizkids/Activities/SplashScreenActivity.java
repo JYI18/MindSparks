@@ -26,7 +26,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             return insets;
         });
 
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
 
         new Handler().postDelayed(new Runnable(){
             @Override
