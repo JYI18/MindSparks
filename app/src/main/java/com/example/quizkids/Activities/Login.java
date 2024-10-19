@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class Login extends AppCompatActivity {
 
     private EditText emailTextView, passwordTextView;
-    private Button Btn;
+    private Button loginBtn, signUpBtn;
     private ProgressBar progressbar;
 
     private FirebaseAuth mAuth;
@@ -38,14 +38,25 @@ public class Login extends AppCompatActivity {
         // Initialize UI components
         emailTextView = findViewById(R.id.email);
         passwordTextView = findViewById(R.id.password);
-        Btn = findViewById(R.id.login);
+        loginBtn = findViewById(R.id.login);
+        signUpBtn = findViewById(R.id.signup); // Assuming you have a button for sign up
         progressbar = findViewById(R.id.progressBar);
 
         // Set onClickListener on the login button
-        Btn.setOnClickListener(new View.OnClickListener() {
+        loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loginUserAccount();
+            }
+        });
+
+        // Set onClickListener on the sign up button
+        signUpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to SignUpActivity if user doesn't have an account
+                Intent intent = new Intent(Login.this, SignUp.class);
+                startActivity(intent);
             }
         });
     }

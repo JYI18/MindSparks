@@ -59,13 +59,13 @@ public class MathsAdditionLevelActivity extends AppCompatActivity{
             }
         });
 
-        // Booster level with random questions
-//        boosterButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startBoosterQuiz();
-//            }
-//        });
+        //Booster level with random questions
+        boosterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //startBoosterQuiz();
+            }
+        });
     }
 
     // Method to start quiz for selected level
@@ -74,59 +74,4 @@ public class MathsAdditionLevelActivity extends AppCompatActivity{
         intent.putExtra("level", level);
         startActivity(intent);
     }
-
-    // Method to start the booster quiz (random questions)
-//    private void startBoosterQuiz() {
-//        Intent intent = new Intent(MathsAdditionLevelActivity.this, BoosterQuizActivity.class);
-//        startActivity(intent);
-//    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    private Button level1Button;
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_maths_addition);
-//
-//        // Set click listeners for each level
-//        Button level1Button = findViewById(R.id.level1Button);
-//        level1Button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startQuiz(1);  // Start quiz for Level 1
-//            }
-//        });
-//
-//        // Similarly, for Levels 2-10, use startQuiz(levelNumber);
-//
-//        // Random level button
-//        Button masteryButton = findViewById(R.id.masteryButton);
-//        masteryButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startQuiz(11);  // Start quiz for Random level
-//            }
-//        });
-//    }
-//
-//    // Start the quiz for the selected level
-//    private void startQuiz(int level) {
-//        Intent intent = new Intent(MathsAdditionLevelActivity.this, MathsQuizActivity.class);
-//        intent.putExtra("LEVEL", level);
-//        startActivity(intent);
-//    }
 }
