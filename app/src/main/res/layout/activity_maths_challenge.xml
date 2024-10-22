@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.MathsQuizActivity">
+    tools:context=".Activities.MathsChallengeActivity">
 
     <!-- Timer Text (Top Left) -->
 
@@ -46,79 +46,30 @@
         android:id="@+id/questionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="132dp"
+        android:layout_marginBottom="32dp"
         android:text="5 + 3 = "
         android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/gridLayout"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timerTextView" />
 
-    <!-- GridLayout for Answer Buttons -->
-
-    <!-- Submit Answer Button -->
-
-    <androidx.gridlayout.widget.GridLayout
-        android:id="@+id/gridLayout"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="-1dp"
-        app:columnCount="2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:rowCount="2">
+        app:layout_constraintTop_toBottomOf="@+id/questionTextView">
 
-        <!-- Answer button 1 -->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/answerInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter your answer" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Answer button 2 -->
-        <Button
-            android:id="@+id/answerButton1"
-            android:layout_width="160dp"
-            android:layout_height="80dp"
-            android:layout_margin="10dp"
-            android:backgroundTint="#f5a802"
-            android:text="8"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            app:layout_column="0"
-            app:layout_row="0" />
-
-        <Button
-            android:id="@+id/answerButton2"
-            android:layout_width="160dp"
-            android:layout_height="80dp"
-            android:layout_margin="10dp"
-            android:backgroundTint="#ff0707"
-            android:text="9"
-            android:textSize="22sp"
-            android:textStyle="bold" />
-
-        <!-- Answer button 3 -->
-        <Button
-            android:id="@+id/answerButton3"
-            android:layout_width="160dp"
-            android:layout_height="80dp"
-            android:layout_margin="10dp"
-            android:backgroundTint="#03A9F4"
-            android:text="7"
-            android:textSize="22sp"
-            android:textStyle="bold" />
-
-        <!-- Answer button 4 -->
-        <Button
-            android:id="@+id/answerButton4"
-            android:layout_width="160dp"
-            android:layout_height="80dp"
-            android:layout_margin="10dp"
-            android:backgroundTint="#8BC34A"
-            android:text="6"
-            android:textSize="22sp"
-            android:textStyle="bold" />
-    </androidx.gridlayout.widget.GridLayout>
 
     <Button
         android:id="@+id/submitAnswerButton"
@@ -131,7 +82,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/questionTextView" />
 
     <ImageView
         android:id="@+id/imageView"

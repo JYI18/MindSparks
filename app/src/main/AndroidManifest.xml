@@ -55,11 +55,19 @@
             android:exported="false"/>
 
         <activity
-            android:name=".Activities.MathsAdditionLevelActivity"
+            android:name=".Activities.MathsLevelActivity"
             android:exported="false"/>
 
         <activity
             android:name=".Activities.MathsQuizActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".Activities.MathsMasteryActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".Activities.MathsChallengeActivity"
             android:exported="false"/>
 
     </application>

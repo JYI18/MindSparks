@@ -3,6 +3,9 @@ package com.example.quizkids.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import com.example.quizkids.R;
@@ -11,10 +14,21 @@ public class MathsCategoryActivity extends AppCompatActivity {
 
     CardView addition, subtraction, multiplication, division, challenge;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maths_category);
+
+        ImageView backButton = findViewById(R.id.imageView2);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish(); // Close the current activity and go back
+            }
+        });
+
 
         // Initialize CardViews
         addition = findViewById(R.id.addition);
@@ -23,12 +37,11 @@ public class MathsCategoryActivity extends AppCompatActivity {
         division = findViewById(R.id.division);
         challenge = findViewById(R.id.challenge);
 
-        // Set OnClickListeners for each category card
         addition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigate to Addition Quiz Activity
-                Intent intent = new Intent(MathsCategoryActivity.this, MathsAdditionLevelActivity.class);
+                Intent intent = new Intent(MathsCategoryActivity.this, MathsLevelActivity.class);
+                intent.putExtra("category", "addition"); // Pass the category
                 startActivity(intent);
             }
         });
@@ -36,8 +49,8 @@ public class MathsCategoryActivity extends AppCompatActivity {
         subtraction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigate to Subtraction Quiz Activity
-                Intent intent = new Intent(MathsCategoryActivity.this, MathsSubtractionLevelActivity.class);
+                Intent intent = new Intent(MathsCategoryActivity.this, MathsLevelActivity.class);
+                intent.putExtra("category", "subtraction"); // Pass the category
                 startActivity(intent);
             }
         });
@@ -45,8 +58,8 @@ public class MathsCategoryActivity extends AppCompatActivity {
         multiplication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigate to Multiplication Quiz Activity
-                Intent intent = new Intent(MathsCategoryActivity.this, MathsMultiplicationLevelActivity.class);
+                Intent intent = new Intent(MathsCategoryActivity.this, MathsLevelActivity.class);
+                intent.putExtra("category", "multiplication"); // Pass the category
                 startActivity(intent);
             }
         });
@@ -54,8 +67,8 @@ public class MathsCategoryActivity extends AppCompatActivity {
         division.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigate to Division Quiz Activity
-                Intent intent = new Intent(MathsCategoryActivity.this, MathsDivisionLevelActivity.class);
+                Intent intent = new Intent(MathsCategoryActivity.this, MathsLevelActivity.class);
+                intent.putExtra("category", "division"); // Pass the category
                 startActivity(intent);
             }
         });
@@ -63,11 +76,20 @@ public class MathsCategoryActivity extends AppCompatActivity {
         challenge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigate to Challenge Quiz Activity
-                Intent intent = new Intent(MathsCategoryActivity.this, ChallengeActivity.class);
+                Intent intent = new Intent(MathsCategoryActivity.this, MathsChallengeActivity.class);
                 startActivity(intent);
             }
         });
+
+        Button masteryButton = findViewById(R.id.button);
+        masteryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MathsCategoryActivity.this, MathsMasteryActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }
 

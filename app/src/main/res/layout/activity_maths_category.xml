@@ -9,6 +9,7 @@
     tools:context=".Activities.MathsCategoryActivity">
 
     <!-- Toolbar section with back button and title -->
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -45,23 +46,27 @@
         app:layout_constraintVertical_bias="0.666" />
 
     <TextView
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="16dp"
         android:text="Select a Category"
         android:textSize="24sp"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <!-- Main Layout for categories -->
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
-        android:layout_height="570dp"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="130dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/category_back"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -74,10 +79,10 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             app:columnCount="2"
-            app:rowCount="3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:rowCount="3">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/addition"
@@ -211,7 +216,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="400dp"
+            android:layout_marginTop="365dp"
             android:layout_marginEnd="16dp"
             app:cardCornerRadius="90dp"
             app:cardElevation="8dp"
@@ -242,6 +247,18 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="16dp"
+            android:text="Mastery"
+            android:textSize="20sp"
+            android:backgroundTint="#FF4E88"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/challenge" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
