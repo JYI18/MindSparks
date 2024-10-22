@@ -61,13 +61,13 @@ public class ScienceCategoryActivity extends AppCompatActivity {
             }
         });
 
-        challenge.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate to Science Challenge Activity
-                Intent intent = new Intent(ScienceCategoryActivity.this, ChallengeActivity.class);
-                startActivity(intent);
-            }
-        });
+//        challenge.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Navigate to Science Challenge Activity
+//                Intent intent = new Intent(ScienceCategoryActivity.this, ChallengeActivity.class);
+//                startActivity(intent);
+//            }
+//        });
     }
 }

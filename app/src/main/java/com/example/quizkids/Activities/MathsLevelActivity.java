@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MathsLevelActivity extends AppCompatActivity {
 
-    private Button level1Button, level2Button, level3Button, level4Button, level5Button, boosterButton;
+    private Button level1Button, level2Button, level3Button, level4Button, level5Button, backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +17,7 @@ public class MathsLevelActivity extends AppCompatActivity {
         setContentView(R.layout.activity_maths_level);
         //Get the category from the intent
         String category = getIntent().getStringExtra("category");
+
 
         // Initializing buttons
         level1Button = findViewById(R.id.level1Button);

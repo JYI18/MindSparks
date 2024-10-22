@@ -51,8 +51,8 @@ public class MathsChallengeActivity extends AppCompatActivity {
     // Method to generate and display the next question
     private void displayNextQuestion() {
         if (questionCounter <= numQuestions) {
-            int number1 = random.nextInt(999 + 1);
-            int number2 = random.nextInt(999 + 1);
+            int number1 = random.nextInt(11 + 1);
+            int number2 = random.nextInt(11 + 1);
             char operator = generateRandomOperator();
             currentAnswer = calculateAnswer(number1, number2, operator);
 
@@ -86,8 +86,8 @@ public class MathsChallengeActivity extends AppCompatActivity {
                 return num1 * num2;
             case '÷':
                 // Ensure no division by zero and integer division
-                if (num2 == 0) {
-                    num2 = 1;
+                if (num2 == 0 || num2>12) {
+                    num2 = random.nextInt(12);
                 }
                 return num1 / num2;  // Return integer division
             default:
