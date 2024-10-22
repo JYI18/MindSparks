@@ -53,6 +53,13 @@
             android:layout_marginTop="16dp"
             android:text="Login" />
 
+        <Button
+            android:id="@+id/signup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign Up"
+            android:layout_below="@id/login"/>
+
         <!-- ProgressBar for loading -->
         <ProgressBar
             android:id="@+id/progressBar"

@@ -11,7 +11,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.quizkids.Activities.SetsActivity;
+import com.example.quizkids.Activities.MathsCategoryActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,50 +35,49 @@ public class MainActivity extends AppCompatActivity {
         viewScore = findViewById(R.id.ViewScore);
         settings = findViewById(R.id.Settings);
 
-        science.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SetsActivity.class);
-                startActivity(intent);
-
-            }
-        });
+//        science.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MainActivity.this, ScienceCategoryActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         mathematics.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SetsActivity.class);
+                Intent intent = new Intent(MainActivity.this, MathsCategoryActivity.class);
                 startActivity(intent);
             }
         });
 
-        rewards.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SetsActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        viewScore.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SetsActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        settings.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SetsActivity.class);
-                startActivity(intent);
-            }
-        });
+//        rewards.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MainActivity.this, RewardsActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        viewScore.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MainActivity.this, ViewScoreActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        settings.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MainActivity.this, Settings.class);
+//                startActivity(intent);
+//            }
+//        });
     }
 }
