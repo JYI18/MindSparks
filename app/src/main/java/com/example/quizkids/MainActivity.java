@@ -12,6 +12,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.quizkids.Activities.MathsCategoryActivity;
+import com.example.quizkids.Activities.ScienceCategoryActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,14 +36,14 @@ public class MainActivity extends AppCompatActivity {
         viewScore = findViewById(R.id.ViewScore);
         settings = findViewById(R.id.Settings);
 
-//        science.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(MainActivity.this, ScienceCategoryActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+      science.setOnClickListener(new View.OnClickListener() {
+
+           @Override
+         public void onClick(View view) {
+             Intent intent = new Intent(MainActivity.this, ScienceCategoryActivity.class);
+             startActivity(intent);
+        }
+      });
 
         mathematics.setOnClickListener(new View.OnClickListener() {
 
