@@ -119,13 +119,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:text="View Score"
+                        android:text="ViewScore"
                         android:textStyle="bold" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/View Score"
+                android:id="@+id/ViewScore"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"

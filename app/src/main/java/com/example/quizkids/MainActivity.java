@@ -15,7 +15,7 @@ import com.example.quizkids.Activities.SetsActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    CardView science,mathematics;
+    CardView science,mathematics,rewards,viewScore,settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
 
         science = findViewById(R.id.science);
         mathematics = findViewById(R.id.mathematics);
+        rewards = findViewById(R.id.rewards);
+        viewScore = findViewById(R.id.ViewScore);
+        settings = findViewById(R.id.Settings);
 
         science.setOnClickListener(new View.OnClickListener() {
 
@@ -39,6 +42,42 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, SetsActivity.class);
                 startActivity(intent);
 
+            }
+        });
+
+        mathematics.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SetsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        rewards.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SetsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        viewScore.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SetsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        settings.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SetsActivity.class);
+                startActivity(intent);
             }
         });
     }
