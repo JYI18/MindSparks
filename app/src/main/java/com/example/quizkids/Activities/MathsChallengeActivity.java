@@ -13,7 +13,7 @@ import java.util.Random;
 
 public class MathsChallengeActivity extends AppCompatActivity {
 
-    private TextView questionTextView, questionNumberTextView, timerTextView;
+    private TextView questionTextView, questionNumberTextView;
     private TextInputEditText answerInput;
     private Button submitAnswerButton;
     private int questionCounter = 1;
@@ -29,7 +29,6 @@ public class MathsChallengeActivity extends AppCompatActivity {
         // Initialize views
         questionTextView = findViewById(R.id.questionTextView);
         questionNumberTextView = findViewById(R.id.questionNumberTextView);
-        timerTextView = findViewById(R.id.timerTextView);
         answerInput = findViewById(R.id.answerInputEditText);  // Use the correct ID for TextInputEditText
         // Corrected to fetch the TextInputEditText
         submitAnswerButton = findViewById(R.id.submitAnswerButton);
@@ -80,16 +79,13 @@ public class MathsChallengeActivity extends AppCompatActivity {
             case '-':
                 return num1 - num2;
             case 'x':
-                if (num2 > 12){
-                    num2 = random.nextInt(12);
-                }
+                num1 = random.nextInt(13); // Random number between 0 and 12
+                num2 = random.nextInt(13); // Random number between 0 and 12
                 return num1 * num2;
             case '÷':
-                // Ensure no division by zero and integer division
-                if (num2 == 0 || num2>12) {
-                    num2 = random.nextInt(12);
-                }
-                return num1 / num2;  // Return integer division
+                num2 = random.nextInt(12) + 1; // num2 between 1 and 12 (avoid division by 0)
+                num1 = num2 * random.nextInt(13); // Ensure num1 is divisible by num2
+                return num1 / num2; // Integer division
             default:
                 return 0;
         }

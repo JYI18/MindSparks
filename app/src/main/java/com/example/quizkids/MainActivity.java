@@ -55,24 +55,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        rewards.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(MainActivity.this, RewardsActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        viewScore.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(MainActivity.this, ViewScoreActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
         settings.setOnClickListener(new View.OnClickListener() {
 
             @Override

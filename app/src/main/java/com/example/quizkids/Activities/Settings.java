@@ -3,10 +3,10 @@ package com.example.quizkids.Activities;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +20,12 @@ public class Settings extends AppCompatActivity {
 
     private TextView profileEmail, profileLastSignIn;
     private ImageView backButton;
-    private Button logoutButton;
+    private Button logoutButton, changePasswordButton;
+    private EditText newPasswordInput;
+    private Spinner timerSpinner;
+    private Button saveTimerButton;
+
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,61 +37,59 @@ public class Settings extends AppCompatActivity {
         profileLastSignIn = findViewById(R.id.profileLastSignIn);
         backButton = findViewById(R.id.backButton);
         logoutButton = findViewById(R.id.logoutButton);
+        newPasswordInput = findViewById(R.id.newPasswordInput);
+        changePasswordButton = findViewById(R.id.changePasswordButton);
+        timerSpinner = findViewById(R.id.timerSpinner);
+        saveTimerButton = findViewById(R.id.saveTimerButton);
 
         // Get current user
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
+        // Set user details
         if (user != null) {
-            // Set user email
             profileEmail.setText("Email: " + user.getEmail());
 
-            // Get last sign-in time (in milliseconds) and format it
             long lastSignInTimestamp = user.getMetadata().getLastSignInTimestamp();
             String lastSignInDate = android.text.format.DateFormat.format("MM/dd/yyyy hh:mm a", new java.util.Date(lastSignInTimestamp)).toString();
             profileLastSignIn.setText("Last Signed In: " + lastSignInDate);
-        } else {
-            profileEmail.setText("No user signed in");
-            profileLastSignIn.setText("");
         }
 
-        // Handle back button click
-        backButton.setOnClickListener(v -> onBackPressed());
-
         // Handle logout button click
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Sign out the user
-                FirebaseAuth.getInstance().signOut();
-                // Redirect to login screen or SplashScreenActivity
-                Intent intent = new Intent(Settings.this, Login.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                finish(); // Close the current activity
-            }
+        logoutButton.setOnClickListener(v -> {
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(Settings.this, Login.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
         });
 
-        // Initialize views
-        EditText screenTimeInput = findViewById(R.id.screenTimeInput);
-        Button saveScreenTimeBtn = findViewById(R.id.saveScreenTimeBtn);
+        // Handle Save Timer button click
+        saveTimerButton.setOnClickListener(v -> {
+            String selectedTimer = timerSpinner.getSelectedItem().toString();
+            int timerValue = selectedTimer.equals("60 seconds") ? 60 : selectedTimer.equals("90 seconds") ? 90 : 30;
 
-// Handle Save button click
-        saveScreenTimeBtn.setOnClickListener(v -> {
-            String screenTime = screenTimeInput.getText().toString();
+            SharedPreferences sharedPreferences = getSharedPreferences("QuizSettings", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("timerValue", timerValue);
+            editor.apply();
 
-            if (!screenTime.isEmpty()) {
-                // Convert to int (in minutes)
-                int screenTimeLimit = Integer.parseInt(screenTime);
+            Toast.makeText(Settings.this, "Timer saved: " + selectedTimer, Toast.LENGTH_SHORT).show();
+        });
 
-                // Save to Firebase or SharedPreferences
-                SharedPreferences sharedPreferences = getSharedPreferences("ParentalControl", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putInt("screenTimeLimit", screenTimeLimit); // Save time in minutes
-                editor.apply();
-
-                Toast.makeText(Settings.this, "Screen time limit saved", Toast.LENGTH_SHORT).show();
+        // Handle password change
+        changePasswordButton.setOnClickListener(v -> {
+            String newPassword = newPasswordInput.getText().toString();
+            if (!newPassword.isEmpty()) {
+                user.updatePassword(newPassword)
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(Settings.this, "Password updated successfully!", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(Settings.this, "Failed to update password!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
             } else {
-                Toast.makeText(Settings.this, "Please enter a valid time", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Settings.this, "Please enter a new password", Toast.LENGTH_SHORT).show();
             }
         });
     }

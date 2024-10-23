@@ -1,5 +1,6 @@
 package com.example.quizkids.Activities;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -30,8 +31,8 @@ public class MathsQuizActivity extends AppCompatActivity {
     private int selectedAnswer = -1;
     private int correctAnswer;
     private int score = 0;
-    private CountDownTimer countDownTimer;  // Timer for each question
-    private static final long TIME_LIMIT = 30000; // 30 seconds per question
+    private CountDownTimer countDownTimer;
+    private long TIME_LIMIT = 30000;  // Default 30 seconds
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,18 +49,16 @@ public class MathsQuizActivity extends AppCompatActivity {
         answerButton4 = findViewById(R.id.answerButton4);
         submitAnswerButton = findViewById(R.id.submitAnswerButton);
 
-        // Retrieve the level passed from MathsAdditionLevelActivity
+        // Retrieve the level and category passed from MathsAdditionLevelActivity
         String category = getIntent().getStringExtra("category");
         int level = getIntent().getIntExtra("level", 1);  // Default to level 1 if no level is passed
 
-        // Log the category and level for debugging
         Log.d("QuizActivity", "Category: " + category + ", Level: " + level);
 
         // Construct the Firebase reference dynamically based on the selected category and level
         String firebasePath = "maths/" + category + "/level" + level;
         Log.d("QuizActivity", "Firebase path: " + firebasePath);
 
-        // Firebase reference
         databaseReference = FirebaseDatabase.getInstance("https://mindsparks-b5274-default-rtdb.asia-southeast1.firebasedatabase.app")
                 .getReference(firebasePath);
 
@@ -71,12 +70,18 @@ public class MathsQuizActivity extends AppCompatActivity {
 
         // Submit button logic
         submitAnswerButton.setOnClickListener(v -> checkAnswer());
+
+        // Retrieve the selected timer value from SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("QuizSettings", MODE_PRIVATE);
+        int timerValue = sharedPreferences.getInt("timerValue", 30);  // Default to 30 seconds if not set
+        TIME_LIMIT = timerValue * 1000;  // Convert to milliseconds
+
+        Log.d("QuizActivity", "Timer value: " + timerValue + " seconds");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // Cancel the timer to prevent memory leaks
         if (countDownTimer != null) {
             countDownTimer.cancel();
         }
@@ -88,10 +93,8 @@ public class MathsQuizActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot questionSnapshot : dataSnapshot.getChildren()) {
-                        // Log the data for debugging
                         Log.d("FirebaseData", "Question snapshot: " + questionSnapshot.toString());
 
-                        // Parse the question object
                         Question question = questionSnapshot.getValue(Question.class);
                         if (question != null) {
                             questionsList.add(question);
@@ -99,14 +102,12 @@ public class MathsQuizActivity extends AppCompatActivity {
                             Log.e("FirebaseError", "Question is null");
                         }
                     }
-                    // If questions are loaded, display the first question
                     if (!questionsList.isEmpty()) {
                         displayQuestion();
                     } else {
                         Toast.makeText(MathsQuizActivity.this, "No questions found", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    // No data exists in the path
                     Toast.makeText(MathsQuizActivity.this, "No data found", Toast.LENGTH_SHORT).show();
                     Log.e("FirebaseError", "No data found at path");
                 }
@@ -114,7 +115,6 @@ public class MathsQuizActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Handle database errors
                 Log.e("FirebaseError", "Error: " + databaseError.getMessage());
                 Toast.makeText(MathsQuizActivity.this, "Failed to load questions: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
@@ -125,11 +125,9 @@ public class MathsQuizActivity extends AppCompatActivity {
         if (currentQuestionIndex < questionsList.size()) {
             Question currentQuestion = questionsList.get(currentQuestionIndex);
 
-            // Display the question and options
             questionTextView.setText(currentQuestion.getQuestionText());
             questionNumberTextView.setText("Question " + (currentQuestionIndex + 1) + "/" + questionsList.size());
 
-            // Set answer options
             List<Integer> options = currentQuestion.getOptions();
             answerButton1.setText(String.valueOf(options.get(0)));
             answerButton2.setText(String.valueOf(options.get(1)));
@@ -138,38 +136,32 @@ public class MathsQuizActivity extends AppCompatActivity {
 
             correctAnswer = currentQuestion.getCorrectAnswer();
 
-            // Reset selected answer and button colors when a new question is displayed
-            selectedAnswer = -1; // Reset the selected answer
-            resetButtonColors(); // Reset the button colors to the default color
+            selectedAnswer = -1;  // Reset selected answer
+            resetButtonColors();  // Reset button colors
 
-            // Start the timer for this question
-            startTimer();
+            startTimer();  // Start the countdown timer
         } else {
-            // End of quiz
             Toast.makeText(this, "Quiz Completed! Your score: " + score, Toast.LENGTH_LONG).show();
         }
     }
 
-    // Start the countdown timer
     private void startTimer() {
         if (countDownTimer != null) {
-            countDownTimer.cancel();  // Cancel the previous timer if it exists
+            countDownTimer.cancel();  // Cancel previous timer
         }
 
-        countDownTimer = new CountDownTimer(TIME_LIMIT, 1000) {  // 30 seconds with 1-second intervals
+        countDownTimer = new CountDownTimer(TIME_LIMIT, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                // Update the timer text view every second
                 timerTextView.setText("Time left: " + millisUntilFinished / 1000 + "s");
             }
 
             public void onFinish() {
-                // Time is up! Move to the next question or handle no answer.
                 Toast.makeText(MathsQuizActivity.this, "Time's up!", Toast.LENGTH_SHORT).show();
                 currentQuestionIndex++;
                 displayQuestion();
             }
-        }.start();  // Start the timer
+        }.start();
     }
 
     private void setAnswerButtonListeners() {
@@ -218,13 +210,11 @@ public class MathsQuizActivity extends AppCompatActivity {
             score++;
         }
 
-        // Move to next question
         currentQuestionIndex++;
-        selectedAnswer = -1; // Reset selected answer
+        selectedAnswer = -1;  // Reset selected answer
         displayQuestion();
     }
 
-    // Question class to model data from Firebase
     public static class Question {
         private String questionText;
         private List<Integer> options;

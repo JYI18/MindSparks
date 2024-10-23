@@ -7,7 +7,6 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,8 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class SignUp extends AppCompatActivity {
 
     private EditText emailEditText, passwordEditText;
-    private Button registerButton;
-    private ProgressBar progressBar;
+    private Button signupButton;
     private FirebaseAuth mAuth;
 
     @Override
@@ -34,11 +32,10 @@ public class SignUp extends AppCompatActivity {
         // Link the UI components
         emailEditText = findViewById(R.id.email);
         passwordEditText = findViewById(R.id.passwd);
-        registerButton = findViewById(R.id.btnregister);
-        progressBar = findViewById(R.id.progressbar);
+        signupButton = findViewById(R.id.signupbutton);
 
         // Set onClickListener for the register button
-        registerButton.setOnClickListener(v -> {
+        signupButton.setOnClickListener(v -> {
             String email = emailEditText.getText().toString().trim();
             String password = passwordEditText.getText().toString().trim();
 
@@ -58,19 +55,14 @@ public class SignUp extends AppCompatActivity {
                 return;
             }
 
-            if (password.length() < 6) {
-                passwordEditText.setError("Password must be at least 6 characters");
+            if (!isPasswordValid(password)) {
+                passwordEditText.setError("Password must be at least 6 characters, contain at least one uppercase letter, one lowercase letter, one number, and one special character");
                 return;
             }
-
-            // Show progress bar during registration
-            progressBar.setVisibility(View.VISIBLE);
 
             // Firebase sign-up method
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(task -> {
-                        // Hide progress bar
-                        progressBar.setVisibility(View.GONE);
 
                         if (task.isSuccessful()) {
                             // Sign-up successful, log user in and navigate to MainActivity
@@ -83,5 +75,14 @@ public class SignUp extends AppCompatActivity {
                         }
                     });
         });
+    }
+
+    // Function to check password requirements
+    private boolean isPasswordValid(String password) {
+        return password.length() >= 6 &&
+                password.matches(".*[A-Z].*") &&  // At least one uppercase letter
+                password.matches(".*[a-z].*") &&  // At least one lowercase letter
+                password.matches(".*\\d.*") &&    // At least one digit
+                password.matches(".*[@#$%^&+=!?].*");  // At least one special character
     }
 }

@@ -32,7 +32,9 @@
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter your Email"
+            android:background="@color/white"
+            android:layout_marginTop="60sp"
+            android:hint="  Enter your Email"
             android:inputType="textEmailAddress"
             android:minHeight="48dp" />
 
@@ -41,7 +43,9 @@
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter your Password"
+            android:layout_marginTop="30sp"
+            android:background="@color/white"
+            android:hint="  Enter your Password"
             android:inputType="textPassword"
             android:minHeight="48dp" />
 
@@ -50,23 +54,16 @@
             android:id="@+id/login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:text="Login" />
 
         <Button
             android:id="@+id/signup"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20sp"
             android:text="Sign Up"
             android:layout_below="@id/login"/>
-
-        <!-- ProgressBar for loading -->
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:visibility="gone" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

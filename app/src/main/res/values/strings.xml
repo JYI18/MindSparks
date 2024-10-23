@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MindSparks</string>
+    <string-array name="timer_options">
+        <item>30 seconds</item>
+        <item>60 seconds</item>
+        <item>90 seconds</item>
+    </string-array>
+
 </resources>
