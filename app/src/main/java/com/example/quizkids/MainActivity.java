@@ -12,6 +12,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.quizkids.Activities.MathsCategoryActivity;
+import com.example.quizkids.Activities.ReauthenticateActivity;
 import com.example.quizkids.Activities.ScienceCategoryActivity;
 import com.example.quizkids.Activities.Settings;
 
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Settings.class);
+                Intent intent = new Intent(MainActivity.this, ReauthenticateActivity.class);
                 startActivity(intent);
             }
         });

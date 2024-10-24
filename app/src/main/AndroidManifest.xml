@@ -70,6 +70,10 @@
             android:name=".Activities.MathsChallengeActivity"
             android:exported="false"/>
 
+        <activity
+            android:name=".Activities.ReauthenticateActivity"
+            android:exported="false"/>
+
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
