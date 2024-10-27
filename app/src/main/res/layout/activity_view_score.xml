@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFE5B4"> <!-- Add your background here -->
+
+
+    <!-- Pink Bar (View Scores Bar) -->
+    <View
+        android:id="@+id/pinkBar"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="#FF4E88"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Your Scores Text in the Pink Bar -->
+    <TextView
+        android:id="@+id/scoreTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/your_scores"
+        android:textColor="@android:color/black"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="@id/pinkBar"
+        app:layout_constraintBottom_toBottomOf="@id/pinkBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5" />
+
+
+    <!-- Scores Display -->
+
+
+    <!-- Reset Quiz Button -->
+    <TextView
+        android:id="@+id/messageText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="176dp"
+        android:inputType="textMultiLine"
+        android:padding="16dp"
+        android:singleLine="false"
+        android:text="Message will be displayed here"
+        android:textColor="#000"
+        android:textSize="25dp"
+        android:textStyle="bold"
+
+        app:layout_constraintTop_toTopOf="@id/scoreTitle"
+        app:layout_constraintTop_toBottomOf="@id/scoreTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/scoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
+        android:text="Score: 0"
+        android:textColor="@android:color/black"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Back to Menu Button -->
+
+    <Button
+        android:id="@+id/resetQuizButton"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="152dp"
+        android:text="@string/reset_quiz"
+        android:textColor="@android:color/white"
+
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.621"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/scoreText" />
+
+    <Button
+        android:id="@+id/backToMenuButton"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="52dp"
+        android:text="@string/back_to_menu"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.621"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/resetQuizButton" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
