@@ -19,7 +19,7 @@ public class MathsChallengeActivity extends AppCompatActivity {
     private int questionCounter = 1;
     private final int numQuestions = 10;
     private Random random;
-    private int currentAnswer;
+    private double currentAnswer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,31 +61,40 @@ public class MathsChallengeActivity extends AppCompatActivity {
         } else {
             // End the quiz
             questionTextView.setText("Quiz Complete!");
-            submitAnswerButton.setEnabled(false);
         }
     }
 
     // Method to randomly select an operator
     private char generateRandomOperator() {
-        char[] operators = {'+', '-', '*', '÷'};
+        char[] operators = {'+', '-', 'x', '÷'};
         return operators[random.nextInt(operators.length)];
     }
 
     // Method to calculate the answer based on the operator
-    private int calculateAnswer(int num1, int num2, char operator) {
+    private double calculateAnswer(int num1, int num2, char operator) {
         switch (operator) {
             case '+':
                 return num1 + num2;
             case '-':
+                if (num2 > num1) {
+                    // Swap num1 and num2 to ensure num1 > num2
+                    int temp = num2;
+                    num2 = num1;
+                    num1 = temp;
+                }
                 return num1 - num2;
+
             case 'x':
                 num1 = random.nextInt(13); // Random number between 0 and 12
                 num2 = random.nextInt(13); // Random number between 0 and 12
                 return num1 * num2;
+
             case '÷':
-                num2 = random.nextInt(12) + 1; // num2 between 1 and 12 (avoid division by 0)
-                num1 = num2 * random.nextInt(13); // Ensure num1 is divisible by num2
-                return num1 / num2; // Integer division
+                num1 = random.nextInt(13);
+                num2 = random.nextInt(13) + 1;
+                double answer = num1/num2;
+                return (double) num1 / num2; // Cast num1 to double before division
+
             default:
                 return 0;
         }
@@ -95,18 +104,17 @@ public class MathsChallengeActivity extends AppCompatActivity {
         String userAnswer = answerInput.getText().toString();
         if (!userAnswer.isEmpty()) {
             try {
-                int userAnswerInt = Integer.parseInt(userAnswer);
-                if (userAnswerInt == currentAnswer) {
+                double userAnswerDouble = Double.parseDouble(userAnswer); // Use Double here
+                if (Math.abs(userAnswerDouble - currentAnswer) < 0.01) { // Allow a small tolerance for decimals
                     // Correct answer
                     Toast.makeText(MathsChallengeActivity.this, "Correct!", Toast.LENGTH_SHORT).show();
                 } else {
                     // Incorrect answer
                     Toast.makeText(MathsChallengeActivity.this, "Incorrect!", Toast.LENGTH_SHORT).show();
                 }
-                // Move to the next question regardless of correct or incorrect
+                // Move to the next question
                 questionCounter++;
                 displayNextQuestion();
-                // Clear the input field
                 answerInput.setText("");
             } catch (NumberFormatException e) {
                 Toast.makeText(this, "Please enter a valid number.", Toast.LENGTH_SHORT).show();
@@ -115,5 +123,6 @@ public class MathsChallengeActivity extends AppCompatActivity {
             Toast.makeText(this, "Answer cannot be empty!", Toast.LENGTH_SHORT).show();
         }
     }
+
 
 }

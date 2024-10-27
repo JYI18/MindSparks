@@ -1,29 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/maths_quiz"
     tools:context=".Activities.MathsQuizActivity">
 
     <!-- Timer Text (Top Left) -->
 
     <!-- Question Number Text (Top Right) -->
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="40dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.034"
+        app:srcCompat="@drawable/ic_back"
+        app:tint="#FF4E88" />
+
     <TextView
         android:id="@+id/timerTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="100dp"
         android:text="00:00"
-        android:textColor="#000000"
-        android:textSize="20sp"
+        android:textColor="#FF0000"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/questionNumberTextView"
-        app:layout_constraintHorizontal_bias="0.347"
+        app:layout_constraintHorizontal_bias="0.439"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,33 +43,35 @@
         android:id="@+id/questionNumberTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="50dp"
         android:text="Question 1/5"
-        android:textColor="#000000"
-        android:textSize="20sp"
+        android:textColor="#FF0000"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Question Text -->
+
+    <!-- GridLayout for Answer Buttons -->
+
+    <!-- Submit Answer Button -->
+
     <TextView
         android:id="@+id/questionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="5 + 3 = "
         android:textColor="#000000"
-        android:textSize="24sp"
+        android:textSize="60sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/gridLayout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timerTextView" />
-
-    <!-- GridLayout for Answer Buttons -->
-
-    <!-- Submit Answer Button -->
+        app:layout_constraintTop_toBottomOf="@+id/timerTextView"
+        app:layout_constraintVertical_bias="0.486" />
 
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/gridLayout"
@@ -68,6 +82,7 @@
         app:columnCount="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:rowCount="2">
@@ -80,9 +95,9 @@
             android:layout_width="160dp"
             android:layout_height="80dp"
             android:layout_margin="10dp"
-            android:backgroundTint="#f5a802"
+            android:backgroundTint="@color/maths_default_button_color"
             android:text="8"
-            android:textSize="22sp"
+            android:textSize="34sp"
             android:textStyle="bold"
             app:layout_column="0"
             app:layout_row="0" />
@@ -92,9 +107,9 @@
             android:layout_width="160dp"
             android:layout_height="80dp"
             android:layout_margin="10dp"
-            android:backgroundTint="#ff0707"
+            android:backgroundTint="@color/maths_default_button_color"
             android:text="9"
-            android:textSize="22sp"
+            android:textSize="34sp"
             android:textStyle="bold" />
 
         <!-- Answer button 3 -->
@@ -103,9 +118,9 @@
             android:layout_width="160dp"
             android:layout_height="80dp"
             android:layout_margin="10dp"
-            android:backgroundTint="#03A9F4"
+            android:backgroundTint="@color/maths_default_button_color"
             android:text="7"
-            android:textSize="22sp"
+            android:textSize="34sp"
             android:textStyle="bold" />
 
         <!-- Answer button 4 -->
@@ -114,9 +129,9 @@
             android:layout_width="160dp"
             android:layout_height="80dp"
             android:layout_margin="10dp"
-            android:backgroundTint="#8BC34A"
+            android:backgroundTint="@color/maths_default_button_color"
             android:text="6"
-            android:textSize="22sp"
+            android:textSize="34sp"
             android:textStyle="bold" />
     </androidx.gridlayout.widget.GridLayout>
 
@@ -130,15 +145,19 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/gridLayout"
+        app:layout_constraintVertical_bias="0.318"
+        app:strokeColor="#032CFB"
+        app:strokeWidth="5dp" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="90dp"
         app:layout_constraintEnd_toStartOf="@+id/timerTextView"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

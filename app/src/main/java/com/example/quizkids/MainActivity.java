@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         science = findViewById(R.id.science);
         mathematics = findViewById(R.id.mathematics);
         rewards = findViewById(R.id.rewards);
-        viewScore = findViewById(R.id.ViewScore);
+//        viewScore = findViewById(R.id.ViewScore);
         settings = findViewById(R.id.Settings);
 
         science.setOnClickListener(new View.OnClickListener() {

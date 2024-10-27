@@ -15,15 +15,23 @@
         android:gravity="center_vertical"
         android:orientation="vertical"
         android:padding="15dp"
-        tools:layout_editor_absoluteX="-165dp"
-        tools:layout_editor_absoluteY="-120dp">
+        tools:layout_editor_absoluteX="-123dp"
+        tools:layout_editor_absoluteY="-150dp">
 
         <!-- TextView for heading -->
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center_horizontal"
+            app:srcCompat="@drawable/mind_spark" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Login"
+            android:text="LOGIN PAGE"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -32,8 +40,8 @@
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
             android:layout_marginTop="60sp"
+            android:background="@color/white"
             android:hint="  Enter your Email"
             android:inputType="textEmailAddress"
             android:minHeight="48dp" />
@@ -53,17 +61,23 @@
         <Button
             android:id="@+id/login"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:layout_marginTop="20dp"
-            android:text="Login" />
+            android:backgroundTint="#FF4E88"
+            android:text="LOGIN"
+            android:textSize="24sp"
+            app:strokeColor="#FEC007"
+            app:strokeWidth="5dp" />
 
         <Button
             android:id="@+id/signup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/login"
             android:layout_marginTop="20sp"
+            android:backgroundTint="#FFC107"
             android:text="Sign Up"
-            android:layout_below="@id/login"/>
+            android:textColor="#000000" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

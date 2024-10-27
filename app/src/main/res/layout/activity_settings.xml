@@ -104,12 +104,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
         android:layout_marginTop="19dp"
+        android:layout_marginEnd="25dp"
+        android:backgroundTint="#FF8400"
         android:text="LOGOUT"
+        android:textColor="#000000"
         android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileSection" />
+        app:layout_constraintTop_toBottomOf="@+id/profileSection"
+        app:strokeWidth="1dp" />
 
     <TextView
         android:id="@+id/setQuizTimer"
@@ -127,23 +131,33 @@
 
     <Spinner
         android:id="@+id/timerSpinner"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="#FFFFFF"
+        android:backgroundTint="#FFFFFF"
+        android:backgroundTintMode="add"
         android:entries="@array/timer_options"
         android:minHeight="48dp"
         android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/setQuizTimer" />
 
     <Button
         android:id="@+id/saveTimerButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:text="Save"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timerSpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/timerSpinner"
+        app:strokeWidth="1dp" />
 
 <!--    <EditText-->
 <!--        android:id="@+id/passwordInput"-->
@@ -169,36 +183,55 @@
         android:id="@id/changePassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20sp"
+        android:layout_marginTop="32dp"
         android:text="Change Password"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/saveTimerButton"/>
+        app:layout_constraintTop_toBottomOf="@+id/saveTimerButton" />
 
     <EditText
         android:id="@+id/newPasswordInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
         android:background="@color/white"
         android:hint="New Password"
         android:inputType="textPassword"
         android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/changePassword" />
 
+    <EditText
+        android:id="@+id/newConfirmPasswordInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/white"
+        android:hint="Confirm New Password"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newPasswordInput" />
+
     <Button
         android:id="@+id/changePasswordButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8sp"
-        android:text="Submit"
+        android:layout_marginEnd="16dp"
+        android:text="Confirm"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newPasswordInput"/>
+        app:layout_constraintTop_toBottomOf="@+id/newConfirmPasswordInput"
+        app:strokeWidth="1dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

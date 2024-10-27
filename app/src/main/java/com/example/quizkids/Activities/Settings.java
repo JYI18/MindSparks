@@ -76,10 +76,18 @@ public class Settings extends AppCompatActivity {
             Toast.makeText(Settings.this, "Timer saved: " + selectedTimer, Toast.LENGTH_SHORT).show();
         });
 
+        EditText confirmNewPasswordInput = findViewById(R.id.newConfirmPasswordInput);
+
         // Handle password change
         changePasswordButton.setOnClickListener(v -> {
             String newPassword = newPasswordInput.getText().toString();
-            if (!newPassword.isEmpty()) {
+            String confirmNewPassword = confirmNewPasswordInput.getText().toString();
+
+            if (newPassword.isEmpty() || confirmNewPassword.isEmpty()) {
+                Toast.makeText(Settings.this, "Please fill in both password fields", Toast.LENGTH_SHORT).show();
+            } else if (!newPassword.equals(confirmNewPassword)) {
+                Toast.makeText(Settings.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+            } else {
                 user.updatePassword(newPassword)
                         .addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
@@ -88,8 +96,6 @@ public class Settings extends AppCompatActivity {
                                 Toast.makeText(Settings.this, "Failed to update password!", Toast.LENGTH_SHORT).show();
                             }
                         });
-            } else {
-                Toast.makeText(Settings.this, "Please enter a new password", Toast.LENGTH_SHORT).show();
             }
         });
     }
