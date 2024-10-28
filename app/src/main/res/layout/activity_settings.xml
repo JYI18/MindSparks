@@ -89,13 +89,6 @@
                 android:text="Email: Loading..."
                 android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/profileLastSignIn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Last Signed In: Loading..."
-                android:textSize="18sp" />
         </LinearLayout>
     </LinearLayout>
 

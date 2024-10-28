@@ -34,7 +34,6 @@ public class Settings extends AppCompatActivity {
 
         // Initialize views
         profileEmail = findViewById(R.id.profileEmail);
-        profileLastSignIn = findViewById(R.id.profileLastSignIn);
         backButton = findViewById(R.id.backButton);
         logoutButton = findViewById(R.id.logoutButton);
         newPasswordInput = findViewById(R.id.newPasswordInput);
@@ -48,10 +47,6 @@ public class Settings extends AppCompatActivity {
         // Set user details
         if (user != null) {
             profileEmail.setText("Email: " + user.getEmail());
-
-            long lastSignInTimestamp = user.getMetadata().getLastSignInTimestamp();
-            String lastSignInDate = android.text.format.DateFormat.format("MM/dd/yyyy hh:mm a", new java.util.Date(lastSignInTimestamp)).toString();
-            profileLastSignIn.setText("Last Signed In: " + lastSignInDate);
         }
 
         // Handle logout button click
