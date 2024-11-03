@@ -1,4 +1,6 @@
 
+
+
 package com.example.quizkids.Activities;
 
 import android.content.Intent;
@@ -7,6 +9,7 @@ import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,8 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-
-public class PlanetsQuizActivity extends AppCompatActivity {
+public class PlantQuizActivity  extends AppCompatActivity {
 
     private TextView questionTextView, questionNumberTextView, timerTextView;
     private Button answerButton1, answerButton2, answerButton3, answerButton4, submitAnswerButton;
@@ -49,10 +51,17 @@ public class PlanetsQuizActivity extends AppCompatActivity {
         answerButton3 = findViewById(R.id.answerButton3);
         answerButton4 = findViewById(R.id.answerButton4);
         submitAnswerButton = findViewById(R.id.submitAnswerButton);
+        ImageView backButton = findViewById(R.id.backArrow);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish(); // Close the current activity and go back
+            }
+        });
 
         // Firebase reference
         databaseReference = FirebaseDatabase.getInstance("https://mindsparks-b5274-default-rtdb.asia-southeast1.firebasedatabase.app")
-                .getReference("science/planet_space");
+                .getReference("science/plants");
 
         // Load questions from Firebase
         loadQuestionsFromFirebase();
@@ -89,10 +98,10 @@ public class PlanetsQuizActivity extends AppCompatActivity {
                     if (!questionsList.isEmpty()) {
                         displayQuestion();
                     } else {
-                        Toast.makeText(PlanetsQuizActivity.this, "No questions found", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PlantQuizActivity.this, "No questions found", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(PlanetsQuizActivity.this, "No data found", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PlantQuizActivity.this, "No data found", Toast.LENGTH_SHORT).show();
                     Log.e("FirebaseError", "No data found at path");
                 }
             }
@@ -100,7 +109,7 @@ public class PlanetsQuizActivity extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Log.e("FirebaseError", "Error: " + databaseError.getMessage());
-                Toast.makeText(PlanetsQuizActivity.this, "Failed to load questions: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(PlantQuizActivity.this, "Failed to load questions: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -146,7 +155,7 @@ public class PlanetsQuizActivity extends AppCompatActivity {
 
             public void onFinish() {
                 // If the timer runs out, we move to the next question
-                Toast.makeText(PlanetsQuizActivity.this, "Time's up!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PlantQuizActivity.this, "Time's up!", Toast.LENGTH_SHORT).show();
                 currentQuestionIndex++;  // Move to the next question
                 if (currentQuestionIndex < questionsList.size()) {
                     displayQuestion();  // Load the next question
@@ -201,13 +210,13 @@ public class PlanetsQuizActivity extends AppCompatActivity {
         }
 
         // Navigate to ViewScoreActivity to display the score
-        Intent intent = new Intent(PlanetsQuizActivity.this, ViewScoreActivity.class);
+        Intent intent = new Intent(PlantQuizActivity.this, ViewScoreActivity.class);
         intent.putExtra("SCORE", score);
-        intent.putExtra("CATEGORY", "Planet_Space");
-        // Pass the score
+        intent.putExtra("CATEGORY", "Plants"); // Pass the category// Pass the score
         startActivity(intent);
         finish();  // Close this activity
     }
+
 
     // ChallengeQuestion class to model data from Firebase
     public static class ChallengeQuestion {
@@ -234,5 +243,6 @@ public class PlanetsQuizActivity extends AppCompatActivity {
         }
     }
 }
+
 
 
