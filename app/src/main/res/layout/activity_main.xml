@@ -20,7 +20,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.gridlayout.widget.GridLayout
-            android:id="@+id/gridLayout2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -93,7 +92,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/rewards"
+                android:id="@+id/ViewScore"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
@@ -118,41 +117,41 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:text="View Score"
+                        android:text="ViewScore"
                         android:textStyle="bold" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!--            <androidx.cardview.widget.CardView-->
-            <!--                android:id="@+id/ViewScore"-->
-            <!--                android:layout_width="150dp"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_margin="16dp"-->
-            <!--                app:cardCornerRadius="60dp"-->
-            <!--                app:cardElevation="10dp">-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/rewards"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardCornerRadius="60dp"
+                app:cardElevation="10dp">
 
-            <!--                <LinearLayout-->
-            <!--                    android:layout_width="match_parent"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    android:background="#4D4DFF"-->
-            <!--                    android:gravity="center"-->
-            <!--                    android:orientation="vertical">-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#4D4DFF"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-            <!--                    <ImageView-->
-            <!--                        android:layout_width="100dp"-->
-            <!--                        android:layout_height="100dp"-->
-            <!--                        android:layout_marginTop="10dp"-->
-            <!--                        app:srcCompat="@drawable/achievement" />-->
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="10dp"
+                        app:srcCompat="@drawable/achievement" />
 
-            <!--                    <TextView-->
-            <!--                        android:layout_width="wrap_content"-->
-            <!--                        android:layout_height="wrap_content"-->
-            <!--                        android:layout_marginBottom="10dp"-->
-            <!--                        android:text="Rewards"-->
-            <!--                        android:textColor="@color/white"-->
-            <!--                        android:textStyle="bold" />-->
-            <!--                </LinearLayout>-->
-            <!--            </androidx.cardview.widget.CardView>-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Rewards"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/Settings"
@@ -165,7 +164,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#C2C0FB"
+                    android:background="#C0A0B1"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -181,21 +180,12 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:text="Settings"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textStyle="bold" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
         </androidx.gridlayout.widget.GridLayout>
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/gridLayout2"
-            app:srcCompat="@drawable/mind_spark" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
