@@ -22,13 +22,13 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AnimalQuizActivity extends AppCompatActivity {
+public class ScienceChallengeActivity extends AppCompatActivity {
 
     private TextView questionTextView, questionNumberTextView, timerTextView;
     private Button answerButton1, answerButton2, answerButton3, answerButton4, submitAnswerButton, viewScoreButton;
     private DatabaseReference databaseReference;
     private int currentQuestionIndex = 0;
-    private List<ScienceChallengeActivity.ChallengeQuestion> questionsList = new ArrayList<>();
+    private List<ChallengeQuestion> questionsList = new ArrayList<>();
     private String selectedAnswer = "";
     private String correctAnswer;
     private int score = 0;
@@ -40,6 +40,7 @@ public class AnimalQuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_science_challenge);
 
+        // Initialize views
         questionTextView = findViewById(R.id.questionTextView);
         questionNumberTextView = findViewById(R.id.questionNumberTextView);
         timerTextView = findViewById(R.id.timerTextView);
@@ -50,14 +51,18 @@ public class AnimalQuizActivity extends AppCompatActivity {
         submitAnswerButton = findViewById(R.id.submitAnswerButton);
         viewScoreButton = findViewById(R.id.viewScoreButton);
 
-        viewScoreButton.setVisibility(View.GONE); // Hide View Score button initially
+        // Hide View Score button initially
+        viewScoreButton.setVisibility(View.GONE);
 
+        // Firebase reference
         databaseReference = FirebaseDatabase.getInstance("https://mindsparks-b5274-default-rtdb.asia-southeast1.firebasedatabase.app")
-                .getReference("science/animals");
+                .getReference("science/challenges");
 
+        // Load questions from Firebase
         loadQuestionsFromFirebase();
-        setAnswerButtonListeners();
 
+        // Set click listeners for answer buttons and submit button
+        setAnswerButtonListeners();
         submitAnswerButton.setOnClickListener(v -> checkAnswer());
         viewScoreButton.setOnClickListener(v -> openViewScoreActivity());
     }
@@ -65,6 +70,7 @@ public class AnimalQuizActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        // Cancel the timer to prevent memory leaks
         if (countDownTimer != null) {
             countDownTimer.cancel();
         }
@@ -76,7 +82,7 @@ public class AnimalQuizActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot questionSnapshot : dataSnapshot.getChildren()) {
-                        ScienceChallengeActivity.ChallengeQuestion question = questionSnapshot.getValue(ScienceChallengeActivity.ChallengeQuestion.class);
+                        ChallengeQuestion question = questionSnapshot.getValue(ChallengeQuestion.class);
                         if (question != null) {
                             questionsList.add(question);
                         }
@@ -84,24 +90,25 @@ public class AnimalQuizActivity extends AppCompatActivity {
                     if (!questionsList.isEmpty()) {
                         displayQuestion();
                     } else {
-                        Toast.makeText(AnimalQuizActivity.this, "No questions found", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ScienceChallengeActivity.this, "No questions found", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(AnimalQuizActivity.this, "No data found", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ScienceChallengeActivity.this, "No data found", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(AnimalQuizActivity.this, "Failed to load questions: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ScienceChallengeActivity.this, "Failed to load questions: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void displayQuestion() {
         if (currentQuestionIndex < questionsList.size()) {
-            ScienceChallengeActivity.ChallengeQuestion currentQuestion = questionsList.get(currentQuestionIndex);
+            ChallengeQuestion currentQuestion = questionsList.get(currentQuestionIndex);
 
+            // Display the question and options
             questionTextView.setText(currentQuestion.getQuestion());
             questionNumberTextView.setText("Question " + (currentQuestionIndex + 1) + "/" + questionsList.size());
 
@@ -132,7 +139,7 @@ public class AnimalQuizActivity extends AppCompatActivity {
             }
 
             public void onFinish() {
-                Toast.makeText(AnimalQuizActivity.this, "Time's up!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ScienceChallengeActivity.this, "Time's up!", Toast.LENGTH_SHORT).show();
                 currentQuestionIndex++;
                 if (currentQuestionIndex < questionsList.size()) {
                     displayQuestion();
@@ -192,12 +199,12 @@ public class AnimalQuizActivity extends AppCompatActivity {
     private void openViewScoreActivity() {
         SharedPreferences prefs = getSharedPreferences("QuizScores", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putInt("animals_score", score);
+        editor.putInt("science_challenge_score", score);
         editor.apply();
 
         Intent intent = new Intent(this, ViewScoreActivity.class);
         intent.putExtra("SCORE", score);
-        intent.putExtra("CATEGORY", "category");
+        intent.putExtra("CATEGORY", "Science Challenge");
         startActivity(intent);
         finish();
     }

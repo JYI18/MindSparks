@@ -1,3 +1,4 @@
+
 package com.example.quizkids.Activities;
 
 import android.content.Intent;
@@ -22,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AnimalQuizActivity extends AppCompatActivity {
+public class HumanBodyActivity extends AppCompatActivity  {
 
     private TextView questionTextView, questionNumberTextView, timerTextView;
     private Button answerButton1, answerButton2, answerButton3, answerButton4, submitAnswerButton, viewScoreButton;
@@ -53,7 +54,7 @@ public class AnimalQuizActivity extends AppCompatActivity {
         viewScoreButton.setVisibility(View.GONE); // Hide View Score button initially
 
         databaseReference = FirebaseDatabase.getInstance("https://mindsparks-b5274-default-rtdb.asia-southeast1.firebasedatabase.app")
-                .getReference("science/animals");
+                .getReference("science/human_body");
 
         loadQuestionsFromFirebase();
         setAnswerButtonListeners();
@@ -84,16 +85,16 @@ public class AnimalQuizActivity extends AppCompatActivity {
                     if (!questionsList.isEmpty()) {
                         displayQuestion();
                     } else {
-                        Toast.makeText(AnimalQuizActivity.this, "No questions found", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HumanBodyActivity.this, "No questions found", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(AnimalQuizActivity.this, "No data found", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HumanBodyActivity.this, "No data found", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(AnimalQuizActivity.this, "Failed to load questions: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(HumanBodyActivity.this, "Failed to load questions: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -132,7 +133,7 @@ public class AnimalQuizActivity extends AppCompatActivity {
             }
 
             public void onFinish() {
-                Toast.makeText(AnimalQuizActivity.this, "Time's up!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(HumanBodyActivity.this, "Time's up!", Toast.LENGTH_SHORT).show();
                 currentQuestionIndex++;
                 if (currentQuestionIndex < questionsList.size()) {
                     displayQuestion();
@@ -222,3 +223,6 @@ public class AnimalQuizActivity extends AppCompatActivity {
         }
     }
 }
+
+
+

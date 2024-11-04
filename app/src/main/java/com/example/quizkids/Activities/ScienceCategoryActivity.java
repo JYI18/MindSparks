@@ -38,7 +38,7 @@ public class ScienceCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Navigate to Plants Quiz Activity
-                Intent intent = new Intent(ScienceCategoryActivity.this, PlantsQuizActivity.class);
+                Intent intent = new Intent(ScienceCategoryActivity.this, PlantQuizActivity.class);
                 startActivity(intent);
             }
         });
@@ -47,7 +47,7 @@ public class ScienceCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Navigate to Human Body Quiz Activity
-                Intent intent = new Intent(ScienceCategoryActivity.this, HumanBodyQuizActivity.class);
+                Intent intent = new Intent(ScienceCategoryActivity.this, HumanBodyActivity.class);
                 startActivity(intent);
             }
         });
@@ -61,13 +61,13 @@ public class ScienceCategoryActivity extends AppCompatActivity {
             }
         });
 
-//        challenge.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Navigate to Science Challenge Activity
-//                Intent intent = new Intent(ScienceCategoryActivity.this, ChallengeActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        challenge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to Science Challenge Activity
+                Intent intent = new Intent(ScienceCategoryActivity.this, ScienceChallengeActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
