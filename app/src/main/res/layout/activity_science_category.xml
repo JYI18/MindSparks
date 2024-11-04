@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FF4E88"
+    android:background="@drawable/science_cat"
     tools:context=".Activities.ScienceCategoryActivity">
 
     <!-- Toolbar section with back button and title -->
@@ -34,21 +34,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Science"
+        android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.469"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.666" />
+        app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Select a Category"
+        android:textColor="@color/black"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
@@ -60,7 +62,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="130dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/category_back"
+        android:background="#E91E63"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -104,7 +106,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
+                        android:foregroundTint="#EDE7E7"
                         android:text="Animal"
+                        android:textColor="@color/black"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -137,6 +141,7 @@
                         android:layout_marginTop="0dp"
                         android:layout_marginBottom="10dp"
                         android:text="Plants"
+                        android:textColor="@color/black"
                         android:textStyle="bold" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -168,6 +173,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:text="Human body"
+                        android:textColor="@color/black"
                         android:textStyle="bold" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -199,6 +205,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:text="Planets"
+                        android:textColor="@color/black"
                         android:textStyle="bold" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -237,6 +244,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:text="Challenge"
+                    android:textColor="@color/black"
                     android:textStyle="bold" />
             </LinearLayout>
 
